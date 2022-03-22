@@ -7,9 +7,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CustomerService {
+    // Limit class to a singleton instance
+    private static CustomerService instance;
+    private CustomerService(){};
+    public static CustomerService getInstance(){
+        if (instance == null){
+            instance = new CustomerService();
+        }
+        return instance;
+    }
+
     private static Map<String, Customer> customers = new HashMap<>();
 
-    public static void addCustomer(String email, String firstName, String lastName){
+    public void addCustomer(String email, String firstName, String lastName){
         if (getCustomer(email).getClass().equals(Customer.class)) {
             System.out.println("ERROR - Customer exists");
         } else {
@@ -18,11 +28,11 @@ public class CustomerService {
         }
     }
 
-    public static Customer getCustomer(String customerEmail){
+    public Customer getCustomer(String customerEmail){
         return customers.get(customerEmail);
     }
 
-    public static Collection<Customer> getCustomers(){
+    public Collection<Customer> getCustomers(){
         return customers.values();
     }
 }

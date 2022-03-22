@@ -32,6 +32,7 @@ public class ReservationService {
         if (room == null) {
             System.out.println("ERROR: Room ID " + roomId + "does not exist");
         }
+        return room;
     }
 
     public Reservation reserveARoom(Customer customer, iRoom room, Date checkInDate, Date checkOutDate){
@@ -81,8 +82,8 @@ public class ReservationService {
     }
 
     public void printAllReservations(){
+        System.out.println("Printing all reservations...");
         for (Reservation reservation : reservations) {
-            System.out.println("Printing all reservations...");
             System.out.println(reservation);
         }
     }
