@@ -88,4 +88,8 @@ public class ReservationService {
         }
     }
 
+    public Collection<iRoom> getRooms(){
+        return rooms.values();
+    }
+
 }
