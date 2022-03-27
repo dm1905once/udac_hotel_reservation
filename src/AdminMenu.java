@@ -69,6 +69,9 @@ public class AdminMenu {
                     }
                 }
                 break;
+            case 3: // See all Reservations
+                AdminResource.getInstance().displayAllReservations();
+                break;
             case 4: // Add a Room
                 ArrayList<iRoom> roomsToBeAdded = new ArrayList<iRoom>();
                 String addMoreRooms;
