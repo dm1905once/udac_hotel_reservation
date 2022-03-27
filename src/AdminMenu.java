@@ -71,23 +71,16 @@ public class AdminMenu {
                 break;
             case 4: // Add a Room
                 ArrayList<iRoom> roomsToBeAdded = new ArrayList<iRoom>();
-                boolean addRoomLoop = false;
+                String addMoreRooms;
                 Scanner scanner = new Scanner(System.in);
                 do {
                     Room newRoom = handleAddRoom();
                     if (newRoom != null) roomsToBeAdded.add(newRoom);
-                    System.out.println("Would you like to add another room? (y/n)");
-                    String continueLoop = scanner.next();
-                    if (continueLoop.toLowerCase().equals("y")) {
-                        addRoomLoop = true;
-                    } else {
-                        if (!continueLoop.toLowerCase().equals("n")) {
-                            System.out.println("Please enter y (yes) or n (no)");
-                        } else {
-                            addRoomLoop = false;
-                        }
-                    }
-                } while (addRoomLoop);
+                    do {
+                        System.out.println("Would you like to add another room? (y/n)");
+                        addMoreRooms = scanner.next();
+                    } while (!addMoreRooms.toLowerCase().equals("y") && !addMoreRooms.toLowerCase().equals("n"));
+                } while (addMoreRooms.toLowerCase().equals("y"));
                 AdminResource.getInstance().addRoom(roomsToBeAdded);
                 break;
         }
