@@ -34,5 +34,6 @@ public class CustomerService {
 
     public Collection<Customer> getCustomers(){
         return customers.values();
+
     }
 }
