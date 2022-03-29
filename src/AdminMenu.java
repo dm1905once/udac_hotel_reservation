@@ -1,4 +1,5 @@
 import api.AdminResource;
+import api.HotelResource;
 import model.Customer;
 import model.Room;
 import model.RoomType;
@@ -85,6 +86,19 @@ public class AdminMenu {
                     } while (!addMoreRooms.toLowerCase().equals("y") && !addMoreRooms.toLowerCase().equals("n"));
                 } while (addMoreRooms.toLowerCase().equals("y"));
                 AdminResource.getInstance().addRoom(roomsToBeAdded);
+                break;
+            case 5: // Add test data
+                HotelResource hrInstance = HotelResource.getInstance();
+                AdminResource arInstance = AdminResource.getInstance();
+
+                List<iRoom> testRooms = new ArrayList<iRoom>();
+                testRooms.add(new Room("100", 100, RoomType.SINGLE));
+                testRooms.add(new Room("200", 200, RoomType.DOUBLE));
+                arInstance.addRoom(testRooms);
+
+                hrInstance.createACustomer("daniel1@nada.com", "Daniel", "X");
+                hrInstance.createACustomer("daniel2@nada.com", "Daniel", "Y");
+
                 break;
         }
     }

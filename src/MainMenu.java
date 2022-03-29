@@ -93,15 +93,18 @@ public class MainMenu {
             if (rooms.isEmpty()) {
                 System.out.println("No rooms available for the given dates");
             } else {
-                System.out.println("Would you like to book a room? (y/n");
+                for (iRoom eachRoom : rooms){
+                    System.out.println(eachRoom);
+                }
+                System.out.println("Would you like to book a room? (y/n)");
                 String proceedToBook = scanner.next();
                 if (proceedToBook.toLowerCase().equals("y")){
-                    System.out.println("Do you have an account with us? (y/n");
+                    System.out.println("Do you have an account with us? (y/n)");
                     String hasAccount = scanner.next();
                     if (!hasAccount.toLowerCase().equals("y")){
-                        System.out.println("Please create an account first (option 3");
+                        System.out.println("Please create an account first (option 3)");
                     } else {
-                        System.out.println("Enter your email (format name@domain.com");
+                        System.out.println("Enter your email (format name@domain.com)");
                         String email = scanner.next();
                         if (!accountExists(email)){
                             System.out.println("The account you entered does not exist. Please create an account first");

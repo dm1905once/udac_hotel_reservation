@@ -45,7 +45,6 @@ public class ReservationService {
         Collection<iRoom> availableRooms = new ArrayList<iRoom>();
         Collection<Reservation> reservationsByRoom = new ArrayList<>();
 
-        System.out.println("Entre a find rooms");
         // Iterate through every room
         for (String roomID : rooms.keySet()){
             // Add reservations made for each room into a temp list
@@ -54,10 +53,8 @@ public class ReservationService {
                     reservationsByRoom.add(reservation);
                 }
             }
-                System.out.println("PAsando por rooms " + roomID);
                 // This room has not been reserved.
                 if (reservationsByRoom.size() == 0) {
-                    System.out.println("PAse por This room has not been reserved");
                     availableRooms.add(getARoom(roomID));
                 } else {
                     // Room has at least one reservation. Look for available dates
