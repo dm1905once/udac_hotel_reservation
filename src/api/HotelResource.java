@@ -59,7 +59,6 @@ public class HotelResource {
 
     public Collection<iRoom> findARoom(Date checkIn, Date checkOut){
         ReservationService rsInstance = ReservationService.getInstance();
-
         return rsInstance.findRooms(checkIn, checkOut);
     }
 

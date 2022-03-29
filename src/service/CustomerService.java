@@ -20,7 +20,7 @@ public class CustomerService {
     private static Map<String, Customer> customers = new HashMap<>();
 
     public void addCustomer(String email, String firstName, String lastName){
-        if (getCustomer(email).getClass().equals(Customer.class)) {
+        if (customers.get(email) != null) {
             System.out.println("ERROR - Customer exists");
         } else {
             Customer newCustomer = new Customer(email, firstName, lastName);

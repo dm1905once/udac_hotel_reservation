@@ -45,25 +45,30 @@ public class ReservationService {
         Collection<iRoom> availableRooms = new ArrayList<iRoom>();
         Collection<Reservation> reservationsByRoom = new ArrayList<>();
 
+        System.out.println("Entre a find rooms");
         // Iterate through every room
         for (String roomID : rooms.keySet()){
             // Add reservations made for each room into a temp list
-            for (Reservation reservation : reservations){
-                if (reservation.getRoom().getRoomNumber() == roomID){
+            for (Reservation reservation : reservations) {
+                if (reservation.getRoom().getRoomNumber() == roomID) {
                     reservationsByRoom.add(reservation);
                 }
+            }
+                System.out.println("PAsando por rooms " + roomID);
                 // This room has not been reserved.
                 if (reservationsByRoom.size() == 0) {
+                    System.out.println("PAse por This room has not been reserved");
                     availableRooms.add(getARoom(roomID));
                 } else {
                     // Room has at least one reservation. Look for available dates
-                    Date reservationStarts = reservation.getCheckInDate();
-                    Date reservationEnds = reservation.getCheckOutDate();
-                    if (checkInDate.after(reservationEnds) || checkOutDate.before(reservationStarts)){
-                        availableRooms.add(reservation.getRoom());
+                    for (Reservation reservation : reservationsByRoom) {
+                        Date reservationStarts = reservation.getCheckInDate();
+                        Date reservationEnds = reservation.getCheckOutDate();
+                        if (checkInDate.after(reservationEnds) || checkOutDate.before(reservationStarts)){
+                            availableRooms.add(reservation.getRoom());
+                        }
                     }
                 }
-            }
             // Clear the list and move on to the next room
             reservationsByRoom.clear();
         }

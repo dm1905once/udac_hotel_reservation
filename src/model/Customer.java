@@ -8,7 +8,7 @@ public class Customer {
     protected String email;
     protected static String emailValidationRegex = "^(.+)@(.+).(.+)$";
 
-    public Customer(String firstName, String lastName, String email) {
+    public Customer(String email, String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
 
