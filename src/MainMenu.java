@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class MainMenu {
 
-    public static void main(String[] args) {
+    public MainMenu(){
         String mainMenuSelectedOption = null;
         Scanner scanner = new Scanner(System.in);
         do {
@@ -37,6 +37,7 @@ public class MainMenu {
             }
         } while (!mainMenuSelectedOption.equals("5"));
     }
+
 
     private static void printMainMenu(){
         String mainMenu = """
