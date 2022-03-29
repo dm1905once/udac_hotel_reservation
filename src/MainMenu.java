@@ -24,6 +24,8 @@ public class MainMenu {
                     switch (input) {
                         case 1:
                             handleReserveRoom(); break;
+                        case 2:
+                            handleSeeReservations(); break;
                         case 3:
                             handleCreateAccount(); break;
                         case 4:
@@ -60,6 +62,27 @@ public class MainMenu {
         String regexDateFormat = "^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$";
         Pattern dateValidationPattern = Pattern.compile(regexDateFormat);
         return dateValidationPattern.matcher(date).matches();
+    }
+
+    private static void handleSeeReservations(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your email (format: name@domain.com)");
+        String email = scanner.next();
+
+        if (!accountExists(email)){
+            System.out.println("The account you entered does not exist. Please create an account first");
+        } else {
+            HotelResource hrInstance = HotelResource.getInstance();
+            Collection<Reservation> reservations = hrInstance.getCustomerReservations(email);
+            if (reservations.isEmpty()) {
+                System.out.println("You don't have any reservations");
+            } else {
+                for (Reservation reservation : reservations){
+                    System.out.println(reservation);
+                }
+            }
+        }
+
     }
 
     private static void handleCreateAccount(){
