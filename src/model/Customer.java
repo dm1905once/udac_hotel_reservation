@@ -37,4 +37,9 @@ public class Customer {
     public String toString(){
         return "CUSTOMER - Name: " + this.getName() + " Email: " + email;
     }
+
+    @Override
+    public int hashCode(){
+        return (int) firstName.hashCode() + lastName.hashCode() + email.hashCode();
+    }
 }

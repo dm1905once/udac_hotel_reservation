@@ -81,8 +81,9 @@ public class ReservationService {
 
     public Collection<Reservation> getCustomerReservation(Customer customer){
         Collection<Reservation> reservationsByCustomer = new ArrayList<>();
+        int thisCustomerHashCode = customer.hashCode();
         for (Reservation reservation : reservations){
-            if (reservation.getCustomer().getEmail() == customer.getEmail()){
+            if (reservation.getCustomer().hashCode() == thisCustomerHashCode){
                 reservationsByCustomer.add(reservation);
             }
         }
