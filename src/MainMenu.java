@@ -65,6 +65,13 @@ public class MainMenu {
         return dateValidationPattern.matcher(date).matches();
     }
 
+    private static Date addSevenDays(Date inputDate){
+        Calendar c = Calendar.getInstance();
+        c.setTime(inputDate);
+        c.add(Calendar.DAY_OF_MONTH, 7);
+        return c.getTime();
+    }
+
     private static void handleSeeReservations(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your email (format: name@domain.com)");
@@ -115,7 +122,15 @@ public class MainMenu {
             Date checkOutDate = formatter.parse(checkoutString);
             List<iRoom> rooms = new ArrayList<iRoom>(hrInstance.findARoom(checkInDate, checkOutDate));
             if (rooms.isEmpty()) {
-                System.out.println("No rooms available for the given dates");
+                checkInDate=addSevenDays(checkInDate);
+                checkOutDate=addSevenDays(checkOutDate);
+                System.out.println("No rooms available for the given dates. Here are some recommended dates...");
+                System.out.println(("Recommended Check in date: " + checkInDate));
+                System.out.println(("Recommended Check out date: " + checkOutDate));
+                rooms = new ArrayList<iRoom>(hrInstance.findARoom(checkInDate, checkOutDate));
+            }
+            if (rooms.isEmpty()){
+                System.out.println("Unfortunately we are unable to find any recommended dates");
             } else {
                 for (iRoom eachRoom : rooms){
                     System.out.println(eachRoom);
@@ -146,6 +161,8 @@ public class MainMenu {
                     }
                 }
             }
+
+
 
         } catch (ParseException pe){
             System.out.println("Invalid date(s). Please try again with valid dates");

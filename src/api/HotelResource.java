@@ -31,14 +31,11 @@ public class HotelResource {
     }
 
     public void createACustomer(String email, String firstName, String lastName){
-        // service.CustomerService.addCustomer(email, firstName, lastName);
         CustomerService csInstance = CustomerService.getInstance();
         csInstance.addCustomer(email, firstName, lastName);
     }
 
     public iRoom getRoom(String roomNumber){
-        // return service.ReservationService.getARoom(roomNumber);
-        // Creo que necesito jalar la instancia porque si no me marca error
         ReservationService rsInstance = ReservationService.getInstance();
         return rsInstance.getARoom(roomNumber);
     }
