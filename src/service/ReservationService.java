@@ -23,6 +23,17 @@ public class ReservationService {
     Map<String, iRoom> rooms = new HashMap<>();
 
     // Methods
+    // default Method
+    Collection<Reservation> getReservationsByRoom(String roomID){
+        Collection<Reservation> reservationsByRoom = new ArrayList<>();
+        for (Reservation reservation : reservations) {
+            if (reservation.getRoom().getRoomNumber() == roomID) {
+                reservationsByRoom.add(reservation);
+            }
+        }
+        return reservationsByRoom;
+    }
+
     public void addRoom(iRoom room){
         rooms.put(room.getRoomNumber(), room);
     };
@@ -48,11 +59,8 @@ public class ReservationService {
         // Iterate through every room
         for (String roomID : rooms.keySet()){
             // Add reservations made for each room into a temp list
-            for (Reservation reservation : reservations) {
-                if (reservation.getRoom().getRoomNumber() == roomID) {
-                    reservationsByRoom.add(reservation);
-                }
-            }
+            reservationsByRoom = getReservationsByRoom(roomID);
+
                 // This room has not been reserved.
                 if (reservationsByRoom.size() == 0) {
                     availableRooms.add(getARoom(roomID));
@@ -66,8 +74,6 @@ public class ReservationService {
                         }
                     }
                 }
-            // Clear the list and move on to the next room
-            reservationsByRoom.clear();
         }
         return availableRooms;
     }
