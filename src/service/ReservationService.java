@@ -35,7 +35,12 @@ public class ReservationService {
     }
 
     public void addRoom(iRoom room){
-        rooms.put(room.getRoomNumber(), room);
+        String roomNumber = room.getRoomNumber();
+        if (rooms.containsKey(roomNumber)){
+            System.out.println("ERROR: Room ID " + roomNumber + " already exists. It will not be added.");
+        } else {
+            rooms.put(roomNumber, room);
+        }
     };
 
     public iRoom getARoom(String roomId){
